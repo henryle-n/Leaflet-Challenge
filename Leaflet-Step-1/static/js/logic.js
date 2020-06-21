@@ -6,8 +6,8 @@ if (container != null) { container._leaflet_id = null; }
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson"
 
 // Perform a GET request to the query URL
-d3.json(queryUrl, function (data) {
-    console.log("this is data :: ", data.features);
+d3.json(queryUrl).then(data => {
+    console.log("this is data :: ", data.features[0]);
     // Once we get a response, send the data.features object to the createFeatures function
     createFeatures(data.features);
 });
@@ -42,7 +42,7 @@ function createMap(earthquakes) {
         zoomOffset: -1,
         accessToken: API_KEY
     })
-    
+
     var darkmap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -51,6 +51,24 @@ function createMap(earthquakes) {
         zoomOffset: -1,
         accessToken: API_KEY
     })
+
+    var eqLoc;
+
+    // for (var i = 0; i < locations.length; i++) {
+    //     // Setting the marker radius for the state by passing population into the markerSize function
+    //     stateMarkers.push(
+    //     L.circle(locations[i].coordinates, {
+    //         stroke: false,
+    //         fillOpacity: 0.75,
+    //         color: "white",
+    //         fillColor: "white",
+    //         radius: markerSize(locations[i].state.population)
+    //     })
+    //     );
+    // }
+    
+
+
 
     // Define a baseMaps object to hold our base layers
     var baseMaps = {
