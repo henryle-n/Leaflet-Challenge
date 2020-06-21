@@ -3,14 +3,11 @@ var container = L.DomUtil.get('map');
 if (container != null) { container._leaflet_id = null; }
 
 // Store our API endpoint inside queryUrl
-var queryUrl = "https://earthquake.usgs.gov/fdsnws/event/1/query?"
-queryUrl += "format=geojson&starttime=2014-01-01&endtime="
-queryUrl += "2014-01-02&maxlongitude=-69.52148437&minlongitude=-123.83789062&maxlatitude=48.74894534&minlatitude=25.16517337";
-
-console.log("queryUrl\n", queryUrl);
+var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson"
 
 // Perform a GET request to the query URL
 d3.json(queryUrl, function (data) {
+    console.log("this is data :: ", data.features);
     // Once we get a response, send the data.features object to the createFeatures function
     createFeatures(data.features);
 });
@@ -37,12 +34,6 @@ function createFeatures(earthquakeData) {
 function createMap(earthquakes) {
 
     // Define streetmap and darkmap layers
-    // var streetmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    //     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    //     maxZoom: 18,
-    //     id: "mapbox.streets",
-    //     accessToken: API_KEY
-    // });
     var streetmap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -51,13 +42,7 @@ function createMap(earthquakes) {
         zoomOffset: -1,
         accessToken: API_KEY
     })
-
-    // var darkmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    //     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    //     maxZoom: 18,
-    //     id: "mapbox.dark",
-    //     accessToken: API_KEY
-    // });
+    
     var darkmap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
