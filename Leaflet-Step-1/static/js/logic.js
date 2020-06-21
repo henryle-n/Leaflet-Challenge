@@ -31,27 +31,47 @@ function createFeatures(earthquakeData) {
     // bind a popup describing the place and time of each earthquake
     function onEachFeature(feature, layer) {
         layer.bindPopup(
-            "<dl>\
-                <dt class='popUp-state'>State:</dt>" +
-            "<dd>" + feature.properties.place.split(", ")[1] + "</dd>" +
-            "<dt class='popUp-location'>Location:</dt>" +
-            "<dd>" + feature.properties.place.split(", ")[0] + "</dd>" +
+            // for state text
+            "<p class='state-text'>" + feature.properties.place.split(", ")[1] + "</p>" +
+            "<hr>" +
+            
+            "<dl>" +
+            // for location text
+            "<dt class='popUp-title'>Location:</dt>" +
+            "<dd class'popUp-val'>" + feature.properties.place.split(", ")[0] + "</dd>" +
+            "</dt><br>" +
+            
+            // for magnitude text
+            "<dt class='popUp-title'>Magnitude:</dt>" +
+            "<dd class'popUp-val'>" + feature.properties.mag + " Richter</dd>" +
+            "</dt><br>" +
+          
+            // for time text
+            "<dt class='popUp-title'>Time:</dt>" +
+            "<dd class'popUp-val'>" + new Date(feature.properties.time) + " Richter</dd>" +
             "</dt>\
-            </dl>\
-            <hr>" +
-            "<p class='popUp-time'>\
-                <span class='time-title'>Time: </span>" +
-            "<span class='time-val'>" + new Date(feature.properties.time) + "</span>" +
-            "</p>");
+            </dl>"
+        );
     }
 
     console.log("this is earthquake DATA :: ", earthquakeData);
+    colorPane=['#22FF0A','#A1FF0A','#EAFF0A','#FFD60A','#FF8C0A','#FF3B0A']
+
+    function getColor(num) {
+        return num > 5 ? colorPane[5] :
+               num > 4 ? colorPane[4] :
+               num > 3 ? colorPane[3] :
+               num > 2 ? colorPane[2] :
+               num > 1 ? colorPane[1] :
+                       colorPane[0];
+    }
 
     function pointToLayer(feature, latlng) {
-        console.log("this is features :: ", feature);
+        console.log("this is features :: ", feature.properties.mag);
+
         var geojsonMarkerOptions = {
-            radius: 8,
-            fillColor: "#ff7800",
+            radius: feature.properties.mag*1.5,
+            fillColor: getColor(feature.properties.mag),
             color: "#000",
             weight: 1,
             opacity: 1,
