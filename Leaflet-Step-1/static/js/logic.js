@@ -10,6 +10,7 @@ d3.json(queryUrl).then(data => {
     console.log("this is data # 1:: ", data.features);
     console.log("this is mag :: ", data.features[0].properties.mag);
     console.log("this is coord :: ", data.features[0].geometry.coordinates);
+    console.log("this is feature length :: ", data.features.length);
     // Once we get a response, send the data.features object to the createFeatures function
     createFeatures(data.features);
 });
@@ -53,21 +54,22 @@ function createMap(earthquakes) {
         zoomOffset: -1,
         accessToken: API_KEY
     })
-
+    // console.log("this is earthquakes", earthquakes);
     var eqLoc;
-
-    // for (var i = 0; i < locations.length; i++) {
-    //     // Setting the marker radius for the state by passing population into the markerSize function
-    //     stateMarkers.push(
-    //     L.circle(locations[i].coordinates, {
-    //         stroke: false,
-    //         fillOpacity: 0.75,
-    //         color: "white",
-    //         fillColor: "white",
-    //         radius: markerSize(locations[i].state.population)
-    //     })
-    //     );
-    // }
+    console.log("this is earthquake length ::",
+    earthquakes.length);
+    for (var i = 0; i < earthquakes.length; i++) {
+        // Setting the marker radius for the state by passing population into the markerSize function
+        stateMarkers.push(
+        L.circle(locations[i].coordinates, {
+            stroke: false,
+            fillOpacity: 0.75,
+            color: "white",
+            fillColor: "white",
+            radius: markerSize(locations[i].state.population)
+        })
+        );
+    }
     
 
 
