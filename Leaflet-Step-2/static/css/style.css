@@ -66,3 +66,7 @@ div.leaflet-popup-tip {
   color: rgb(217, 255, 2);
   font-weight: 600;
 }
+
+.leaflet-control {
+  background-color: rgba(0, 0, 0, 0.7);
+}
