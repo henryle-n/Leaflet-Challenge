@@ -58,17 +58,17 @@ function createFeatures(earthquakeData) {
             "<dl>" +
             // for location text
             "<dt class='popUp-title'>Location:</dt>" +
-            "<dd class'popUp-val'>" + feature.properties.place.split(", ")[0] + "</dd>" +
+            "<dd class='popUp-val'>" + feature.properties.place.split(", ")[0] + "</dd>" +
             "</dt><br>" +
 
             // for magnitude text
             "<dt class='popUp-title'>Magnitude:</dt>" +
-            "<dd class'popUp-val'>" + feature.properties.mag + " Richter</dd>" +
+            "<dd class='popUp-val'>" + feature.properties.mag + " Richter</dd>" +
             "</dt><br>" +
 
             // for time text
             "<dt class='popUp-title'>Time:</dt>" +
-            "<dd class'popUp-val'>" + new Date(feature.properties.time) + " Richter</dd>" +
+            "<dd class='popUp-val'>" + new Date(feature.properties.time) + " Richter</dd>" +
             "</dt>\
             </dl>"
         );
@@ -76,7 +76,7 @@ function createFeatures(earthquakeData) {
 
     function pointToLayer(feature, coords) {
         var circleFormat = {
-            radius: feature.properties.mag * 1.5,
+            radius: feature.properties.mag * 2,
             fillColor: getColor(feature.properties.mag),
             color: getColor(feature.properties.mag),
             weight: 1,
@@ -90,6 +90,7 @@ function createFeatures(earthquakeData) {
 
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
+    // add point to layer to create customized circle markers
     var earthquakes = L.geoJSON(earthquakeData, {
         onEachFeature: onEachFeature,
         pointToLayer: pointToLayer
@@ -185,8 +186,8 @@ function createMap(earthquakes, faultLine) {
     // Pass in our baseMaps and overlayMaps
     // Add the layer control to the map
     var overlayMaps = {
-        Earthquakes: earthquakes,
-        FaultLine : faultLine
+        "<span class='eq-sel-box'>Earthquakes</span>": earthquakes,
+        "<span class='fl-sel-box'>Fault Lines</span>" : faultLine
 
     };
     L.control.layers(baseMaps, overlayMaps, {

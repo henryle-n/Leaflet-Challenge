@@ -71,7 +71,7 @@ function createFeatures(earthquakeData) {
 
     function pointToLayer(feature, coords) {
         var circleFormat = {
-            radius: feature.properties.mag * 1.5,
+            radius: feature.properties.mag * 2,
             fillColor: getColor(feature.properties.mag),
             color: getColor(feature.properties.mag),
             weight: 1,
@@ -85,6 +85,7 @@ function createFeatures(earthquakeData) {
 
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
+    // add point to layer to create customized circle markers
     var earthquakes = L.geoJSON(earthquakeData, {
         onEachFeature: onEachFeature,
         pointToLayer: pointToLayer
@@ -107,24 +108,7 @@ function createMap(earthquakes) {
     //                          BASE MAP
     // #############################################################
     // declare satellite, light, dark, & outdoors layers
-    var satelliteM = L.tileLayer(mapBoxURL, {
-        attribution: mapBoxAttr,
-        maxZoom: 18,
-        id: 'mapbox/satellite-v9',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: API_KEY
-    });
-    var lightM = L.tileLayer(mapBoxURL, {
-        attribution: mapBoxAttr,
-        maxZoom: 18,
-        id: 'mapbox/light-v10',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: API_KEY
-    });
-
-    var darkM = L.tileLayer(mapBoxURL, {
+    var baseMap = L.tileLayer(mapBoxURL, {
         attribution: mapBoxAttr,
         maxZoom: 18,
         id: 'mapbox/dark-v10',
@@ -133,41 +117,10 @@ function createMap(earthquakes) {
         accessToken: API_KEY
     });
 
-    var outdoorM = L.tileLayer(mapBoxURL, {
-        attribution: mapBoxAttr,
-        maxZoom: 18,
-        id: 'mapbox/outdoors-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: API_KEY
-    });
-
-    // baseMaps Object of all base layers for binding
-    var baseMaps = {
-        "<span class='dark-sel-box'>Dark Map</span>": darkM,
-        "<span class='light-sel-box'>Light Map</span>": lightM,
-        "<span class='satellite-sel-box'>Satellite Map</span>": satelliteM,
-        "<span class='outdoors-sel-box'>Outdoors Map</span>": outdoorM
-    };
-
 
     // #############################################################
     //                          OVERLAYS
     // #############################################################
-
-    var eqLens = earthquakes.length;
-    console.log("this is earthquake", earthquakes);
-    for (let i = 0; i < eqLens; i++) {
-        stateMarkers.push(
-            L.circle(locations[i].coordinates, {
-                stroke: false,
-                fillOpacity: 0.75,
-                color: "white",
-                fillColor: "white",
-                radius: markerSize(locations[i].state.population)
-            })
-        );
-    }
 
 
     // instantiate map onload with satellite base layer and earthquake
@@ -176,7 +129,7 @@ function createMap(earthquakes) {
             37.09, -95.71
         ],
         zoom: 5,
-        layers: [darkM, earthquakes]
+        layers: [baseMap, earthquakes]
     });
 
 
@@ -191,8 +144,8 @@ function createMap(earthquakes) {
         Earthquakes: earthquakes,
 
     };
-    L.control.layers(baseMaps, overlayMaps, {
-        collapsed: true
+    L.control.layers(null, overlayMaps, {
+        collapsed: false
     }).addTo(myMap);
 
     // #############################################################
