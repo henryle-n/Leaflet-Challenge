@@ -117,7 +117,7 @@ function createMap(earthquakes, faultLine) {
         tileSize: 512,
         zoomOffset: -1,
         accessToken: API_KEY,
-        // noWrap: true
+        noWrap: true
     });
     var lightM = L.tileLayer(mapBoxURL, {
         attribution: mapBoxAttr,
@@ -126,7 +126,7 @@ function createMap(earthquakes, faultLine) {
         tileSize: 512,
         zoomOffset: -1,
         accessToken: API_KEY,
-        // noWrap: true
+        noWrap: true
     });
     
     var darkM = L.tileLayer(mapBoxURL, {
@@ -136,7 +136,7 @@ function createMap(earthquakes, faultLine) {
         tileSize: 512,
         zoomOffset: -1,
         accessToken: API_KEY,
-        // noWrap: true
+        noWrap: true
     });
     
     var outdoorM = L.tileLayer(mapBoxURL, {
@@ -146,7 +146,7 @@ function createMap(earthquakes, faultLine) {
         tileSize: 512,
         zoomOffset: -1,
         accessToken: API_KEY,
-        // noWrap: true
+        noWrap: true
     });
 
     // baseMaps Object of all base layers for binding
@@ -164,15 +164,16 @@ function createMap(earthquakes, faultLine) {
 
     // instantiate map onload with satellite base layer and earthquake
 
-    bounds = new L.LatLngBounds(new L.LatLng(-180, 180), new L.LatLng(-180, 180));
+ 
+    bounds = new L.LatLngBounds(new L.LatLng(-90, -180), new L.LatLng(90, 180));
     var myMap = L.map("map", {
         center: [
             37.09, -95.71
         ],
         zoom: 5,
         layers: [darkM, earthquakes, faultLine],
-        // maxBounds: bounds,
-        maxBoundsViscosity: 1.0
+        maxBounds: bounds,
+        maxBoundsViscosity: 0
     });
 
 
