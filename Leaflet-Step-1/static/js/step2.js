@@ -28,25 +28,17 @@ var getColor = num => {
 }
 
 // #############################################################
-//                    D3 => GET MAP DATA
-// #############################################################
-// d3 promise to get data from USGS API
-d3.json(queryUrl).then(data => {
-    // get and send data.features object to createFeatures function
-    console.log("this is earthquake data :: \n", data);
-
-    d3.json(faultLineUrl).then(dFL => {
-        console.log("this is fault line :: \n",dFL);   
-        // var earthquakes = createFeatures(data.features);
-        var earthquakes = createFeatures(data.features);
-        var faultLines = createFL (dFL);
-        createMap(earthquakes, faultLines);
+//                      CREATE GEOJSON POLYLINES
+// ############################################################
+function createFL (dataFL){
+    var styleFL = {
+        "color": "#FF14E7",
+        "weight": 3,
+        "opacity": 0.9
+    };
+    var faultLines = L.geoJSON(dataFL, {
+        style:styleFL
     });
-});
-
-
-function createFL (dFL){
-    var faultLines = L.geoJSON(dFL);
     return faultLines;
 }
 
@@ -165,7 +157,7 @@ function createMap(earthquakes, faultLine) {
 
 
     // #############################################################
-    //                          OVERLAYS
+    //                          OVERLAY LAYERS
     // #############################################################
 
     // instantiate map onload with satellite base layer and earthquake
@@ -214,3 +206,20 @@ function createMap(earthquakes, faultLine) {
     };
     legend.addTo(myMap);
 }
+
+
+// #############################################################
+//                    D3 => GET MAP DATA
+// #############################################################
+// d3 promise to get data from USGS API
+d3.json(queryUrl).then(data => {
+    // get and send data.features object to createFeatures function
+    console.log("this is earthquake data :: \n", data);
+
+    d3.json(faultLineUrl).then(dataFL => {
+        console.log("this is fault line :: \n",dataFL);   
+        var earthquakes = createFeatures(data.features);
+        var faultLines = createFL (dataFL);
+        createMap(earthquakes, faultLines);
+    });
+});
