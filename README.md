@@ -11,9 +11,20 @@ Where are these quakes? Thanks to United States Geological Survey (USGS), earthq
 
 ## 2. Languages, Tools & Techniques
 * **Languages:**
-    * JavaScript (ES-6) | HTML5 | CSS3
-* JavaScript Libraries/ Modules:
-    * Leaflet | Mapbox
+    * JavaScript (ES-6)
+    * HTML5
+    * CSS3
+    * Markdown
+* **JS Libraries/ Modules:**
+    * <a href="https://leafletjs.com/">Leaflet.js - ver. 1.6.0</a>
+    * <a href="https://docs.mapbox.com/mapbox.js/api/v3.3.1/">Mapbox.js - ver. 3.3.1</a>
+* **Software/ Applications:**
+    * Visual Studio Code
+    * Live Server
+    * Instant Server
+    * Google Chrome
+* ****
+
 STEP # 1:  
 https://henryle-n.github.io/Weekly-Earthquake-Leaflet/Leaflet-Step1/
 
