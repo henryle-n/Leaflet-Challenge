@@ -5,7 +5,7 @@
 // blank out map so it can be replace if needed.
 var container = L.DomUtil.get('map');
 
-if (container != null) {
+if (container) {
     container._leaflet_id = null;
 };
 
