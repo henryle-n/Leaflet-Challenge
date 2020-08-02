@@ -5,7 +5,7 @@
 // blank out map so it can be replace if needed.
 var container = L.DomUtil.get('map');
 
-if (container != null) {
+if (container) {
     container._leaflet_id = null;
 };
 
@@ -135,7 +135,7 @@ function createMap(earthquakes) {
 
 
     // #############################################################
-    //                          OVERLAY CONTROL FEATURES
+    //                     OVERLAY CONTROL FEATURES
     // #############################################################
     // Create a layer control
     // Pass in our baseMaps and overlayMaps
@@ -149,7 +149,7 @@ function createMap(earthquakes) {
     }).addTo(myMap);
 
     // #############################################################
-    //                          OVERLAY CONTROL FEATURES
+    //                LEGENDS AND COLOR SCALES
     // #############################################################
     var legend = L.control({ position: 'bottomright' });
     legend.onAdd = function (myMap) {
