@@ -51,7 +51,7 @@ JS app accesses Leaflet and Mapbox thru APIs. Ensure to check out the lastest ve
 * Arrow function:
     * `data => {};`
 * Ternary Opearator (single line `if...else...`): 
-    * `<checking-statement> ? <value-if-true> : <else-value>;`
+    * `<conditional-statement> ? <value-if-true> : <else-value>;`
 
 ## 6. How to Use
 * This repository has all source codes developed for this project. To download this project to local PC:
