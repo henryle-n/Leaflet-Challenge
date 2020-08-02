@@ -135,7 +135,7 @@ function createMap(earthquakes) {
 
 
     // #############################################################
-    //                          OVERLAY CONTROL FEATURES
+    //                     OVERLAY CONTROL FEATURES
     // #############################################################
     // Create a layer control
     // Pass in our baseMaps and overlayMaps
@@ -149,7 +149,7 @@ function createMap(earthquakes) {
     }).addTo(myMap);
 
     // #############################################################
-    //                          OVERLAY CONTROL FEATURES
+    //                LEGENDS AND COLOR SCALES
     // #############################################################
     var legend = L.control({ position: 'bottomright' });
     legend.onAdd = function (myMap) {
