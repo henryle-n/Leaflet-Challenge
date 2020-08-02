@@ -160,7 +160,7 @@ function createMap(earthquakes, faultLine) {
 
 
     // #############################################################
-    //                          OVERLAY LAYERS
+    //                      OVERLAY LAYERS
     // #############################################################
 
     // instantiate map onload with satellite base layer and earthquake
@@ -180,7 +180,7 @@ function createMap(earthquakes, faultLine) {
 
 
     // #############################################################
-    //                          OVERLAY CONTROL FEATURES
+    //                   OVERLAY CONTROL FEATURES
     // #############################################################
     // Create a layer control
     // Pass in our baseMaps and overlayMaps
@@ -195,7 +195,7 @@ function createMap(earthquakes, faultLine) {
     }).addTo(myMap);
 
     // #############################################################
-    //                          OVERLAY CONTROL FEATURES
+    //                   LEGENDS AND COLOR SCALES
     // #############################################################
     var legend = L.control({ position: 'bottomright' });
     legend.onAdd = function (myMap) {
@@ -217,7 +217,7 @@ function createMap(earthquakes, faultLine) {
 
 
 // #############################################################
-//                    D3 => GET MAP DATA
+//                   D3 PROMISE => GET MAP DATA
 // #############################################################
 // d3 promise to get data from USGS API
 d3.json(queryUrl).then(data => {
