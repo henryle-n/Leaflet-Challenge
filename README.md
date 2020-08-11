@@ -11,20 +11,20 @@ Where are these quakes? Thanks to United States Geological Survey (USGS), earthq
 
 ## 2. Languages, Tools & Techniques
 * **Languages:**
-    * JavaScript (ES-6)
-    * HTML5
-    * CSS3
+    * JavaScript (ECMAScript 6)
+    * HTML 5
+    * CSS 3
     * Markdown
 * **JS Libraries/ Modules:**
-    * <a href="https://leafletjs.com/">Leaflet.js - ver. 1.6.0</a>
-    * <a href="https://docs.mapbox.com/mapbox.js/api/v3.3.1/">Mapbox.js - ver. 3.3.1</a>
+    * <a href="https://leafletjs.com/">Leaflet v1.6.0</a>
+    * <a href="https://docs.mapbox.com/mapbox.js/api/v3.3.1/">Mapbox v3.3.1</a>
 * **Software/ Applications:**
     * Visual Studio Code
     * Live Server
     * Instant Server
-    * Google Chrome, ver. 84
+    * Google Chrome v84.0.4147.105
 * **Operating Systems:**
-    * Windows 10 Pro, ver.1909
+    * Windows 10 Pro v1909
 
 ## 3. Web Deployment
 Both steps of this project are deployed on GitHub IO. Click on one of the links below to access:
